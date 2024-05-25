@@ -1,0 +1,34 @@
+database/db.sqlite:
+
+# Code for creating the SQLite database for the project
+
+# Import the necessary libraries
+import sqlite3
+
+# Connect to the SQLite database
+conn = sqlite3.connect('database/db.sqlite')
+cursor = conn.cursor()
+
+# Create a table for storing user orders
+cursor.execute('''CREATE TABLE IF NOT EXISTS orders (
+                order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                bomb_size TEXT NOT NULL,
+                power_level TEXT NOT NULL,
+                delivery_location TEXT NOT NULL,
+                status TEXT NOT NULL
+                )''')
+
+# Create a table for storing user feedback
+cursor.execute('''CREATE TABLE IF NOT EXISTS feedback (
+                feedback_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                rating INTEGER NOT NULL,
+                comment TEXT NOT NULL
+                )''')
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+# End of code for creating the SQLite database for the project
